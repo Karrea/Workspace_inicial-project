@@ -4,3 +4,7 @@
 document.addEventListener("DOMContentLoaded", function(e){
 
 });
+
+function toHome() {
+    location.href = "file:///C:/Users/Mati/Desktop/Cursos/JaP/fase%202/eMercado%20week%200/home.html"
+}
