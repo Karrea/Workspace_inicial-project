@@ -7,7 +7,50 @@
   <meta name="google-signin-scope" content="profile email">
   <meta name="google-signin-client_id" content="249207897705-ksumkt5l33uth8skr3akldo5h10dcb6n.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <!-- Google Button -->
+  <!-- Magic button -->
+  <script src="https://cdn.jsdelivr.net/npm/magic-sdk/dist/magic.js"> </script>
+  <script> 
+  
+    const magic = new Magic("pk_test_EFE49F975C58188E"); 
+
+    // Render function
+    const render = async () => {
+    const isLoggedIn = await magic.user.isLoggedIn();
+    /* Show login form if user is not logged in */
+    let html = `
+      <h1>Please sign up or login</h1>
+      <form onsubmit="handleLogin(event)">
+        <input type="email" name="email" required="required" placeholder="Enter your email" />
+        <button type="submit">Send</button>
+      </form>
+    `;
+    if (isLoggedIn) {
+      /* Get user metadata including email */
+      const userMetadata = await magic.user.getMetadata();
+      html = `
+        <h1>Current user: ${userMetadata.email}</h1>
+        <button onclick="handleLogout()">Logout</button>
+      `;
+    }
+    document.getElementById("app").innerHTML = html;
+  };
+
+  const handleLogin = async e => {
+    e.preventDefault();
+    const email = new FormData(e.target).get("email");
+    if (email) {
+      /* One-liner login 🤯 */
+      await magic.auth.loginWithMagicLink({ email });
+      render();
+    }
+  };
+
+  const handleLogout = async () => {
+    await magic.user.logout();
+    render();
+  };
+  </script>
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -42,7 +85,11 @@
   </style>
 </head>
 
-<body class="text-center">
+<body class="text-center" onload="render()">
+    <div id="app">
+      Loading...
+    </div>
+
   <div class="container p-5">
     <div class="alert alert-danger" role="alert">
       <h2> Iniciar Sesión </h2>
@@ -54,7 +101,7 @@
         <label for="password"> <b> Contraseña </b></label>
         <input id="pass" type="password" placeholder="Ingresar Contraseña" name="password" required>
         <br>
-        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <div style="position: absolute;"> <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"> </div> </div> 
         <button type="submit" class="button" onClick="toHome()"> Entrar </button>
       </div>
       <!-- ///// --> 
