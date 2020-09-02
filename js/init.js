@@ -19,7 +19,7 @@ var hideSpinner = function(){
 var getJSONData = function(url){
     var result = {};
     showSpinner();
-    return fetch(PRODUCTS_URL)
+    return fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();

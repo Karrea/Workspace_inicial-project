@@ -16,28 +16,60 @@
 </head>
 
 <body>
+  
+  <!-- Navigator bar -->
   <nav class="site-header sticky-top py-1 bg-dark">
     <div id='navigatorBar' class="container d-flex flex-column flex-md-row justify-content-between">
       
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <!-- ------- -->
+
+  <main role="main">
+    <div class="container mt-5">
+      <div class="text-center p-4">
+        <h2>Descripción de la categoría</h2>
+        <p class="lead">Encontrarás aquí toda la información de la categoría seleccionada.</p>
+      </div>
+      <h3 id="productName"></h3>
+      <hr class="my-3">
+      <dl>
+        <dt>Descripción</dt>
+        <dd>
+          <p id="productDescription"></p>
+        </dd>
+
+        <dt>Cantidad de productos en la categoría</dt>
+        <dd>
+          <p id="productCant"></p>
+        </dd>
+
+        <dt>Precio</dt>
+        <dd>
+          <p id="productCost"></p>
+        </dd>
+
+        <dt>Imágenes ilustrativas</dt>
+        <dd>
+          <div class="row text-center text-lg-left pt-2" id="productImgs">
+          </div>
+        </dd>
+      </dl>
+      <a type="button" class="btn btn-light btn-lg btn-block" href="product-info.html">Ver un producto</a>
     </div>
-  </div>
+  </main>
+
+  <!-- Footer -->
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+  <!-- ---------- -->
+
+<!-- Spinner cargando -->
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -46,10 +78,13 @@
       <div></div>
     </div>
   </div>
+  <!-- ---------- -->
+
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+
 </body>
 
 </html>
