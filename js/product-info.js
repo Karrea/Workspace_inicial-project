@@ -1,4 +1,5 @@
 var product = {};
+var comments = {};
 
 function showImagesGallery(array){
 
@@ -14,10 +15,119 @@ function showImagesGallery(array){
             </div>
         </div>
         `
-
-        document.getElementById("productImgs").innerHTML = htmlContentToAppend;
     }
+    document.getElementById("productImgs").innerHTML = htmlContentToAppend;
 }
+
+function showComments (array) {
+    let htmlContentToAppend = `
+    <h2> <b> Comentarios </b> </h2>
+    <br> 
+    `;
+
+    for(let i = 0; i < array.length; i++){
+        let comment = array[i];
+
+        htmlContentToAppend += `
+        <div> 
+          <p> <b> ${comment.user} </b> dice </p>
+          <p style='font-size: 12px;'> ${comment.dateTime} </p>
+          `
+          
+          for (let i = 1; i <= 5; i++) {
+              if ( i < comment.score) htmlContentToAppend += `<span class="fa fa-star checked"> </span>`
+              else htmlContentToAppend += `<span class="fa fa-star"></span>`
+            };
+          
+          htmlContentToAppend += `<p> ${comment.description} </p>
+          <hr>
+        </div>
+        `
+        document.getElementById("comments").innerHTML = htmlContentToAppend;
+    }
+    document.getElementById("comments").innerHTML += `
+    <div> 
+        <h3> Comentar </h3>
+        <br> <b> 
+        Usuario: </b> <input type='text' readonly disabled value='${localStorage.getItem('mail')}'> 
+        <br> <br> 
+        
+        <b> Comentar: </b> 
+        <textarea class="align-top" rows="3" id="commentarea" name="comment"></textarea>
+        <br>
+
+        <b> Score: </b>
+        <div id='score' class="btn-group" data-toggle="buttons-radio">
+            <button id='1' class="btn">1</button>
+            <button id='2' class="btn">2</button>
+            <button id='3' class="btn">3</button>
+            <button id='4' class="btn">4</button>
+            <button id='5' class="btn">5</button>
+        </div>
+        <br>
+
+        <button class='btn btn-secondary' onClick='puntuar()'> Enviar </button>
+    </div>
+
+
+    `
+}
+
+/* 
+        <div id='estrellitas' class="btn-group" > 
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                Score <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" role="menu" style='text-align: center'>
+                <a class="dropdown-item"> 1 </a>
+                <a class="dropdown-item" href="#">Dropdown link</a>
+            </ul>
+        </div>
+        <br>
+
+        
+
+    */
+
+/* function addEstrellas() {
+    var choseScore = 
+
+    for () {
+
+} */
+
+  //  <span class="fa fa-star checked"></span>
+//}
+
+
+//Fecha y Hora
+var d = new Date();
+var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+var dias = new Array ("Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo");
+var año= d.getFullYear();
+var mes_num = d.getMonth();
+var mes_nom= meses[d.getMonth() - 1];
+var dia_num = d.getDate();
+var dia_nom= dias[d.getDay() - 1];
+var hora= d.getHours();
+var min= d.getMinutes();
+var seg = d.getSeconds();
+//Fecha y Hora
+
+function puntuar() {
+    var inputValue = document.getElementById('commentarea').value;
+    var newComment = {
+        "score": document.getElementById('score').value,
+        "description": inputValue,
+        "user": localStorage.getItem('mail'),
+        "dateTime": "hace unos seconds"
+        }
+    comments.push(newComment);
+    showComments(comments);
+}
+
+
 
 
 
@@ -43,5 +153,18 @@ document.addEventListener("DOMContentLoaded", function(e){
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
         }
-    });
+    } );
+
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(status) {
+        if(status.status === "ok") 
+        {
+            comments = status.data;
+
+            let comentario = document.getElementById('comments');
+
+            comentario.innerHTML = comments.user;
+
+            showComments(comments);
+        }
+    })
 });
