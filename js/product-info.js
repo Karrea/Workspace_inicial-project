@@ -34,7 +34,7 @@ function showComments (array) {
           <p style='font-size: 12px;'> ${comment.dateTime} </p>
           `
           
-          for (let i = 1; i <= 5; i++) {
+          for (let i = 0; i <= 4; i++) {
               if ( i < comment.score) htmlContentToAppend += `<span class="fa fa-star checked"> </span>`
               else htmlContentToAppend += `<span class="fa fa-star"></span>`
             };
@@ -57,13 +57,13 @@ function showComments (array) {
         <br>
 
         <b> Score: </b>
-        <div id='score' class="btn-group" data-toggle="buttons-radio">
-            <button id='1' class="btn">1</button>
-            <button id='2' class="btn">2</button>
-            <button id='3' class="btn">3</button>
-            <button id='4' class="btn">4</button>
-            <button id='5' class="btn">5</button>
-        </div>
+        <select size="4">
+            <option id="1"> 1 </option>
+            <option id="2"> 2 </option>
+            <option id="3"> 3 </option>
+            <option id="4"> 4 </option>
+            <option id="5"> 5 </option>
+        </select>
         <br>
 
         <button class='btn btn-secondary' onClick='puntuar()'> Enviar </button>
@@ -90,15 +90,30 @@ function showComments (array) {
 
     */
 
-/* function addEstrellas() {
-    var choseScore = 
+function addEstrellas() {
+    var uno = document.getElementById('1');
+    var dos = document.getElementById('2');
+    var tres = document.getElementById('3');
+    var cuatro = document.getElementById('4');
+    var cinco = document.getElementById('5');
 
-    for () {
+    if (uno.selected) {
+        return uno.id;
+    } else if (dos.selected) {
+        return dos.id;
+    } else if (tres.selected) {
+        return tres.id;
+    } else if (cuatro.selected) {
+        return cuatro.id;
+    } else if (cinco.selected) {
+        return cinco.id;
+    }
+    
 
-} */
+
+} 
 
   //  <span class="fa fa-star checked"></span>
-//}
 
 
 //Fecha y Hora
@@ -118,10 +133,10 @@ var seg = d.getSeconds();
 function puntuar() {
     var inputValue = document.getElementById('commentarea').value;
     var newComment = {
-        "score": document.getElementById('score').value,
+        "score": addEstrellas(),
         "description": inputValue,
         "user": localStorage.getItem('mail'),
-        "dateTime": "hace unos seconds"
+        "dateTime": "hace unos segundos"
         }
     comments.push(newComment);
     showComments(comments);
