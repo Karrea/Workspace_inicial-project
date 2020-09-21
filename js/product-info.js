@@ -1,5 +1,7 @@
 var product = {};
 var comments = {};
+var relatedProducts = [];
+let productsRelacionados;
 
 function showImagesGallery(array){
 
@@ -108,8 +110,6 @@ function addEstrellas() {
     } else if (cinco.selected) {
         return cinco.id;
     }
-    
-
 
 } 
 
@@ -142,9 +142,26 @@ function puntuar() {
     showComments(comments);
 }
 
+function showRelatedProducts(relatedProducts) {
 
+    let htmlContentToAppend = "";
+    for (let i = 0; i < product.relatedProducts.length; i++) {
+        let relatedProduct = relatedProducts[product.relatedProducts[i]];
+        
+                htmlContentToAppend += `
+                <div class="card">
+                    <img class="card-img-top" src="` + relatedProduct.imgSrc + `" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">` + relatedProduct.name + `</h5>
+                        <p class="card-text">` + relatedProduct.description + `</p>
+                        <a href="#" class="btn btn-primary"> Ver </a>
+                    </div>
+                </div>
+                `
 
-
+        document.getElementById("cardsRelacionados").innerHTML = htmlContentToAppend;
+    }
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -155,18 +172,23 @@ document.addEventListener("DOMContentLoaded", function(e){
         {
             product = resultObj.data;
 
+
             let productNameHTML  = document.getElementById("productName");
             let productDescriptionHTML = document.getElementById("productDescription");
             let productCantHTML = document.getElementById("productCant");
             let productCostHTML = document.getElementById("productCost");
+
+            
         
             productNameHTML.innerHTML = product.name;
             productDescriptionHTML.innerHTML = product.description;
             productCantHTML.innerHTML = product.soldCount;
             productCostHTML.innerHTML = product.cost;
+ 
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            showRelatedProducts(product.relatedProducts);
         }
     } );
 
@@ -182,4 +204,17 @@ document.addEventListener("DOMContentLoaded", function(e){
             showComments(comments);
         }
     })
+
+    getJSONData(PRODUCTS_URL).then(function(status) { 
+        if(status.status === 'ok')
+        {
+            relatedProducts = status.data;
+
+            productsRelacionados = document.getElementById('cardsRelacionados');
+
+
+            showRelatedProducts(relatedProducts);
+        }
+    })
+    
 });

@@ -56,9 +56,24 @@ function showName() {
     <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
     <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
     <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-    <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-    <a class="py-2 d-none d-md-inline-block" href=""> ${ localStorage.getItem('mail') }  </a>;
+
+    <div class="nav-item dropdown ">
+      <a class="nav-link dropdown-toggle" href="#" id="perfilButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        ${ localStorage.getItem('mail') } 
+      </a>
+      <div class="dropdown-menu" aria-labelledby="perfilButton">
+        <a class="dropdown-item" href="cart.html"> Mi carrito </a>
+        <a class="dropdown-item" href="#"> Mi perfil </a>
+        <div class='dropdown-divider'></div> 
+        <a class="dropdown-item" onClick='deleteSession()'> Salir </a>
+      </div>
+    </div>
   `; // 
 
   nav.innerHTML = toAppend;
+}
+
+function deleteSession() {
+  localStorage.clear()
+  location.href = "index.html";
 }

@@ -22,18 +22,34 @@
     <div id='navigatorBar' class="container d-flex flex-column flex-md-row justify-content-between">
       
     </div>
+
+    
+
   </nav>
   <!-- ------- -->
 
   <main role="main">
+
+    <!-- Datos del producto -->
     <div class="container mt-5">
+
+      <!-- Titulo principal -->
       <div class="text-center p-4">
-        <h2>Descripción de la categoría</h2>
-        <p class="lead">Encontrarás aquí toda la información de la categoría seleccionada.</p>
+        <h2>Descripción del producto </h2>
+        <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
       </div>
+      <!-- fin Tiutulo principal -->
+
+
       <h3 id="productName"></h3>
+
+      <!-- Divider -->
       <hr class="my-3">
+      <!-- fin Divider -->
+
+      <!-- Datos en lista descriptiva -->
       <dl>
+
         <dt>Descripción</dt>
         <dd>
           <p id="productDescription"></p>
@@ -53,29 +69,33 @@
         <dd>
           <div class="row text-center text-lg-left pt-2" id="productImgs">
           </div>
-        </dd>      
+        </dd>     
+        
+        <dt> Productos relacionados </dt>
+        <dd>
+
+          <!-- Cards relacionados -->
+          <div class='card-deck' id='cardsRelacionados' style="width: 36rem;"> 
+
+          </div>
+
+        </dd>
 
       </dl>
-      <!-- Comments box -->
-      <div id='comments' class="container mt-5"> 
-        
-        <!-- Comentario individual-->
-        
-        <!-- --- -->
+      <!-- fin Datos en lista descriptiva -->
 
-        <!-- Agregar comentarios -->
-        
-        <!-- --- -->
-
-        <!-- Estrellitas -->
-        
-        <!-- --- -->
-        
-
-      </div>
-      <!-- --- -->
+      <!-- Boton volver -->
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Volver a todos los productos</a>
+      <!-- fin Boton volver -->
+
     </div>
+    <!-- fin Datos del producto -->
+
+    <!-- Comments box -->
+    <div id='comments' class="container mt-5"> 
+
+    </div>
+    <!-- fin Comments box -->
 
   </main>
 
@@ -87,7 +107,7 @@
       </p>
     </div>
   </footer>
-  <!-- ---------- -->
+  <!-- fin Footer -->
 
 <!-- Spinner cargando -->
   <div id="spinner-wrapper">
@@ -106,5 +126,4 @@
   <script src="js/product-info.js"></script>
 
 </body>
-
 </html>
