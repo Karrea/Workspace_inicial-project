@@ -7,6 +7,9 @@ const PRODUCT_INFO_COMMENTS_URL ="https://japdevdep.github.io/ecommerce-api/prod
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 
+// se declara la variable que toma la navigator bar
+var nav;
+
 var showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
 };
@@ -43,12 +46,9 @@ var getJSONData = function (url) {
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function (e) {
-  showName();
-});
 
 function showName() {
-  const nav = document.getElementById("navigatorBar");
+  nav = document.getElementById("navigatorBar");
   let toAppend = `
     <a class="py-2 d-none d-md-inline-block" href="home.html">Inicio</a>
     <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
@@ -68,7 +68,7 @@ function showName() {
     </div>
   `; //
 
-  nav.innerHTML = toAppend;
+  nav.innerHTML += toAppend;
 }
 
 // Funcion que deletea la sesion y vuelve al login
@@ -76,3 +76,10 @@ function deleteSession() {
   localStorage.clear();
   location.href = "index.html";
 }
+
+document.addEventListener("DOMContentLoaded", function (e) {
+  if (nav !== null) {
+    showName();
+  }
+});
+

@@ -4,15 +4,10 @@ var unitSubtotal = subtotal;
 var envio;
 var total;
 
-//Funcion que no permite seleccionar menos que 0 articulos
-function greatherThan() {
-    
-    var input = document.querySelectorAll('td > input')
-    
-    if ( input.value < 0) {
-        input.value = 0;
-    }
-}
+// index que dara el id a cada articulo
+var index = 0;
+
+
 
 //Funcion que convierte a usd el subtotal de cada articulo para sumarlo en el total
 function toDolar(article) {
@@ -51,16 +46,20 @@ function showArticles() {
     const tableContainer = document.getElementById("tableBody");
     let toAppend = ``;
 
+
     for (article of articlesArray) {
 
         toDolar(article);
         
+        article.id = index;
+        index += 1;
+
 
         toAppend += `
             <tr> 
-              <td class='w-50'> <img src=' ${article.src}' class='w-25' > ${article.name}  </th>
+              <td class='w-50'> <img src=' ${article.src}' class='w-25' > ${article.name}  </td>
               <td> $ ${article.unitCost} ${article.currency} </td>
-              <td> <input id='cantidadEntrada' type='number' class='w-25' min='0' onkeyup='greatherThan()' value='${article.count}'> </th>
+              <td> <input id='${article.id}' type='number' class='w-25' min='0' onchange="greatherThan();" value='${article.count}'> </td>
               <td id='subtotal'> ${unitSubtotal} </th>
             </tr>
           
@@ -70,6 +69,24 @@ function showArticles() {
 
     tableContainer.innerHTML = toAppend;
 }
+
+//Funcion que no permite seleccionar menos que 0 articulos
+function greatherThan() {
+    
+    for (article of articlesArray) {
+        var input = document.getElementById(article.id);
+        
+        article.count = input.value;
+    
+        if ( input.value < 0) {
+            input.value = 0;
+        }
+        
+
+    }
+}
+
+
 
 function showCostos() {
     var toAppend = `
@@ -115,12 +132,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
             
             //llama la funcion que muestra los articulos
             showArticles();
-            //llama la funcion que calcula el precio
-            calcularEnvio()
+
+            
+            calcularEnvio();
             
             priceCalculator();
-            
+
             showCostos();
+            
             
         }
             
