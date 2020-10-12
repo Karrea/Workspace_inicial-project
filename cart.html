@@ -34,19 +34,156 @@
 </head>
 
 <body>
+
   <nav class="site-header sticky-top py-1 bg-dark">
     <div id='navigatorBar' class="container d-flex flex-column flex-md-row justify-content-between">
     
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  
+  <!-- Container -->
+  <div class='container'>
+    <div class='text-center p-4'>
+      <!-- Header -->
+      <h1> Carrito </h1>
+      <p class='lead'> Termina tu compra </p>
+      <!-- Header -->
     </div>
+
+    <!-- container para Tabla de articulos  -->
+    <div class="p-5 d-flex justify-content-center" id='tableContainer'>
+      
+      <!-- tabla de articulos  -->
+      <table class='table' id='tabla'>
+        <thead class='thead-dark'>
+          <tr class=''>
+            <th id='product'class='text-center'> Producto </th>
+            <th id='precioUnitario'> Precio </th>
+            <th id='cantidad'> Cantidad </th>
+            <th id='subtotal'> Subtotal en USD </th>
+          </tr>
+        </thead>
+        <tbody id='tableBody'>
+        <!-- Aqui se inyectan los articulos desde el js -->
+        </tbody>
+
+      </table>
+      <!-- tabla de  articulos-->
+        
+    </div>
+    <!-- container para tabla de articulos -->
+
+    <!-- Costos -->
+
+
+      
+
+      
+      <!-- row -->
+      <div class="row justify-content-md-center">
+
+        <!-- Columna -->
+        <div class="col-md-8 order-md-1">
+
+          <h5 class="mb-3"> Tipo de envio </h5>
+
+           <!-- nuevo div de tipo de envio -->
+           <div class="form-check">
+            <input class="form-check-input" type="radio" name="shippingType" id="premiumRadio" value="option1" checked>
+            <label class="form-check-label" for="premiumRadio">
+              Premium 2 a 5 días (15%)
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="shippingType" id="expressRadio" value="option2">
+            <label class="form-check-label" for="expressRadio">
+              Express 5 a 8 días (7%)
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="shippingType" id="estandarRadio" value="option3" >
+            <label class="form-check-label" for="estandarRadio">
+              Estándar 12 a 15 días (3%)
+            </label>
+          </div>
+          <!-- fin nuevo div de tipo de envio -->
+
+
+
+         
+
+        
+
+        </div>
+        <!-- fin Columna -->
+
+      </div>
+      <!-- fin row -->
+
+      <br>
+      <!-- row -->
+      <div class="row justify-content-md-center">
+
+        <!-- Columna -->
+        <div class="col-md-8 order-md-1">
+          
+          <!-- Div de costos -->
+          <div id='costos'> 
+            
+            <!-- Aca va la lista de costos -->
+
+          </div>
+          <!-- fin Div de costos -->
+
+        </div>
+
+      </div>
+
+      
+
+
+        
+
+      
+
+
+      <!-- row -->
+      <div class="row justify-content-md-center">
+
+        <!-- Columna -->
+        <div class="col-md-8 order-md-1">
+
+
+        <!-- Metodo de pago -->
+        <div>
+          <h4> Metodo de pago </h4>
+          <a href=''> Seleccionar </a>
+        </div>
+
+        <!-- fin Metodo de pago -->
+          
+
+          <hr class="mb-4">
+          
+          <button class="btn btn-primary btn-lg" type="submit"> Finalizar compra </button>
+
+          <br>
+          <br>
+          <br>
+
+        </div>
+        <!-- fin col -->
+        
+      </div>
+      <!-- fin row -->
+      
+      
+    
   </div>
+  <!-- fin container -->
+  
+
+  <!-- Spinner -->
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -55,11 +192,14 @@
       <div></div>
     </div>
   </div>
+
+  <!-- Scripts -->
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+
 </body>
 
 </html>
