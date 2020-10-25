@@ -29,6 +29,7 @@ function updateTotalCosts(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+
     document.getElementById("productCountInput").addEventListener("change", function(){
         productCount = this.value;
         updateTotalCosts();
@@ -81,6 +82,8 @@ document.addEventListener("DOMContentLoaded", function(e){
     //Se agrega una escucha en el evento 'submit' que será
     //lanzado por el formulario cuando se seleccione 'Vender'.
     sellForm.addEventListener("submit", function(e){
+
+        
 
         let productNameInput = document.getElementById("productName");
         let productCategory = document.getElementById("productCategory");
@@ -147,3 +150,6 @@ document.addEventListener("DOMContentLoaded", function(e){
             return false;
     });
 });
+
+
+

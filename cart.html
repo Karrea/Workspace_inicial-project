@@ -11,6 +11,7 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
@@ -37,10 +38,10 @@
 
   <nav class="site-header sticky-top py-1 bg-dark">
     <div id='navigatorBar' class="container d-flex flex-column flex-md-row justify-content-between">
-    
+
     </div>
   </nav>
-  
+
   <!-- Container -->
   <div class='container'>
     <div class='text-center p-4'>
@@ -50,138 +51,282 @@
       <!-- Header -->
     </div>
 
+    <div >
     <!-- container para Tabla de articulos  -->
     <div class="p-5 d-flex justify-content-center" id='tableContainer'>
-      
+
       <!-- tabla de articulos  -->
       <table class='table' id='tabla'>
         <thead class='thead-dark'>
           <tr class=''>
-            <th id='product'class='text-center'> Producto </th>
+            <th id='product' class='text-center'> Producto </th>
             <th id='precioUnitario'> Precio </th>
             <th id='cantidad'> Cantidad </th>
-            <th id='subtotal'> Subtotal en USD </th>
+            <th id='subtotalTitle'> Subtotal </th>
+            <th id='delete-item'> Eliminar </th>
           </tr>
         </thead>
         <tbody id='tableBody'>
-        <!-- Aqui se inyectan los articulos desde el js -->
+          <!-- Aqui se inyectan los articulos desde el js -->
         </tbody>
 
       </table>
       <!-- tabla de  articulos-->
-        
+
     </div>
     <!-- container para tabla de articulos -->
 
     <!-- Costos -->
 
+    <form class='needs-validation'>
+    <!-- row -->
+    <div class="row justify-content-md-center">
 
-      
+      <!-- Columna -->
+      <div class="col-md-8 order-md-1">
 
-      
-      <!-- row -->
-      <div class="row justify-content-md-center">
+        <h5 class="mb-3"> Tipo de envio </h5>
 
-        <!-- Columna -->
-        <div class="col-md-8 order-md-1">
-
-          <h5 class="mb-3"> Tipo de envio </h5>
-
-           <!-- nuevo div de tipo de envio -->
-           <div class="form-check">
-            <input class="form-check-input" type="radio" name="shippingType" id="premiumRadio" value="option1" checked>
-            <label class="form-check-label" for="premiumRadio">
-              Premium 2 a 5 días (15%)
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="shippingType" id="expressRadio" value="option2">
-            <label class="form-check-label" for="expressRadio">
-              Express 5 a 8 días (7%)
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="shippingType" id="estandarRadio" value="option3" >
-            <label class="form-check-label" for="estandarRadio">
-              Estándar 12 a 15 días (3%)
-            </label>
-          </div>
-          <!-- fin nuevo div de tipo de envio -->
-
-
-
-         
-
-        
-
+        <!-- nuevo div de tipo de envio -->
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="shippingType" id="premiumRadio" value="option1"
+            onclick="alCambiarEnvio()" checked>
+          <label class="form-check-label" for="premiumRadio">
+            Premium 2 a 5 días (15%)
+          </label>
         </div>
-        <!-- fin Columna -->
-
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="shippingType" id="expressRadio" value="option2"
+            onclick="alCambiarEnvio()">
+          <label class="form-check-label" for="expressRadio">
+            Express 5 a 8 días (7%)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="shippingType" id="estandarRadio" value="option3"
+            onclick="alCambiarEnvio()">
+          <label class="form-check-label" for="estandarRadio">
+            Estándar 12 a 15 días (3%)
+          </label>
+        </div>
+        <!-- fin nuevo div de tipo de envio -->
       </div>
-      <!-- fin row -->
+      <!-- fin Columna -->
 
-      <br>
-      <!-- row -->
-      <div class="row justify-content-md-center">
+    </div>
+    <!-- fin row -->
 
-        <!-- Columna -->
-        <div class="col-md-8 order-md-1">
-          
-          <!-- Div de costos -->
-          <div id='costos'> 
-            
-            <!-- Aca va la lista de costos -->
+    <br>
 
-          </div>
-          <!-- fin Div de costos -->
+    <!-- row -->
+    <div class="row justify-content-md-center">
+
+      <!-- Columna -->
+      <div class="col-md-8 order-md-1">
+
+        <!-- Div de costos -->
+        <div id='costos'>
+
+          <!-- Aca va la lista de costos -->
 
         </div>
+        <!-- fin Div de costos -->
 
       </div>
 
-      
+    </div>
 
 
-        
-
-      
 
 
-      <!-- row -->
-      <div class="row justify-content-md-center">
 
-        <!-- Columna -->
-        <div class="col-md-8 order-md-1">
+    <!-- Ventana modal -->
+    <div class="modal fade" tabindex="-1" role="seleccionarMetodoDePago" id="modalCarrito">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- modal header -->
+          <div class="modal-header">
+            <b class="modal-title"> Forma de pago </b>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!-- modal header -->
+          <!-- modal body -->
+          <div class="modal-body ">
+            <div class="container">
+              
+              <!-- radio input -->
+              <label> Tarjeta de crédito</label>
+              <input type='radio' name='transfer' id='tarjeta-credito' onclick='disableMethod()'>
+
+              <div class="row p-2">
+
+                <div class="col p-2 form-check">
+
+                  <label> Nro de la tarjeta </label>
+                  <input class='input-phone' type='text' id='creditCard'>
+
+                </div>
+
+
+
+                <div class="col p-2">
+
+
+                  <label> Código de seguridad </label>
+                  <input type='text' id='code'>
+
+
+                </div>
+
+
+
+                <div class="col p-2">
+
+                  <label> Vencimiento </label>
+                  <br>
+                  <input type='text' id='vence'>
+
+
+                </div>
+
+              </div>
+
+              <!-- Transferencia bancaria -->
+              <div > 
+
+
+                <label > Transferencia bancaria </label>
+                <input type='radio' name='transfer' id='transfer' onclick='disableMethod()'>
+
+                <div class="row p-2">
+
+                  <div class="col p-2">
+
+                    <label> Nro de cuenta </label>
+                    <input type='text' class='form-control' id='numero-cuenta'>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <!-- fin modal body -->
+          </div>
+          <!-- modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          </div>
+          <!-- fin modal footer -->
+        </div>
+      </div>
+    </div>
+    <!-- fin Ventana modal -->
+
+
+    <!-- row -->
+    <div class="row justify-content-md-center">
+
+      <!-- Columna -->
+      <div class="col-md-8 order-md-1">
+
+        <!-- Direccion de envio -->
+        <div >
+
+          <h4> Dirección de envio </h4>
+
+          <div class="row pt-2"> 
+
+            <div class="col">
+
+              <label> Departamento </label>
+              <select class="custom-select d-block w-100" id="productCategory">
+                <option value="" class='form-control'> Elegir departamento</option>
+                <option>Autos</option>
+                <option>Juguetes</option>
+              </select>
+            </div>
+
+            <div class="col">
+
+              <label> Calle </label> 
+              <br>
+              <input type='text' class='form-control' required>
+            </div>
+
+
+
+          </div>
+
+          <div class="row pt-4">
+
+            <div class="col">
+
+              <label> Número </label>
+              <input type='text' class='form-control' style= 'width:100px' required>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Fin Direccion de envio -->
+
+        <hr>
+
 
 
         <!-- Metodo de pago -->
-        <div>
+
           <h4> Metodo de pago </h4>
-          <a href=''> Seleccionar </a>
-        </div>
+          <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#modalCarrito"> Seleccionar
+          </button>
 
-        <!-- fin Metodo de pago -->
-          
-
-          <hr class="mb-4">
-          
-          <button class="btn btn-primary btn-lg" type="submit"> Finalizar compra </button>
-
-          <br>
-          <br>
-          <br>
-
-        </div>
-        <!-- fin col -->
         
+            <!-- tabla de metodo de pago  -->
+        <table class='table' id='tabla-pago'>
+          <tbody id='tableBody'>
+            <tr> 
+              <td class='w-50'> <i class='fab fa-cc-visa'> </i> Matias Carrea </td>
+              <td id='num-tarjeta'> 84984846846489864 </td>
+              <td id='vencimiento'> 06/22 </td>
+              <td class='text-center'> <input type='radio'> </td>
+              <td class='text-center'>  </td>
+            </tr>
+          </tbody>
+
+        </table>
+        <!-- fin Metodo de pago -->
+
+
+        <hr class="mb-4">
+
+        <button class="btn btn-primary btn-lg" type="submit"> Finalizar compra </button>
+
+        <br>
+        <br>
+        <br>
+
+
+
       </div>
-      <!-- fin row -->
-      
-      
-    
+      <!-- fin col -->
+
+
+
+    </div>
+    <!-- fin row -->
+
+
   </div>
   <!-- fin container -->
-  
+</form>
+
+
+
 
   <!-- Spinner -->
   <div id="spinner-wrapper">
@@ -199,6 +344,9 @@
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+
+  <!-- cleave input format script -->
+  <script src="cleave.min.js"></script>
 
 </body>
 
