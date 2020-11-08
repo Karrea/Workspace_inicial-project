@@ -9,6 +9,10 @@
     
     <link href='css/perfil.css' rel='stylesheet'>
 
+    <script async src="https://imgbb.com/upload.js" data-palette="blue" data-auto-insert="html-embed-medium" data-sibling="img-section"></script>
+
+   
+
     
     
 </head>
@@ -22,14 +26,13 @@
 
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom"> Configuraciones de la cuenta</h4>
-        <div class="d-flex align-items-start py-3 border-bottom"> <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img" alt="">
+        <div class="d-flex align-items-start py-3 border-bottom"> <img id='profileImage' src="about:blank" class="img" alt="">
             <div class="pl-sm-4 pl-2" id="img-section"> <b>Foto de perfil</b>
-                <p>Tipo de archivo aceptado .png. Menos de 1 MB</p> <button class="btn button border"><b>Subir</b></button>
+                <p>Tipo de archivo aceptado .png. Menos de 1 MB</p> <button class="btn button border" onclick='window.open("https://imgbb.com/upload")'><b>Subir</b></button>
             </div>
         </div>
         <div class="py-2">
             <div id='datosPerfil'> 
-                
             </div>
             <div class="py-3 pb-4 border-bottom"> <button class="btn btn-primary mr-3" onclick="saveDatos()"> Guardar cambios</button> </div>
             <div class="d-sm-flex align-items-center pt-3" id="deactivate">
@@ -48,6 +51,7 @@
     <script src="js/init.js"></script>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+
     
 </body>
 </html>

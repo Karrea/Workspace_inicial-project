@@ -1,3 +1,4 @@
+    
 var profileDatos = {};
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -61,3 +62,25 @@ function checkData() {
         divDatos.innerHTML += toAppend;
     }
 }
+
+var profileImage = document.getElementById('profileImage');
+
+profileImage.addEventListener('load', function() {
+    var profileCanvas = document.createElement('canvas'),
+        imgContext = profileCanvas.getContext('2d');
+
+        profileCanvas.width = profileImage.width;
+    profileCanvas.height = profileImage.height;
+
+    imgContext.drawImage(profileImage, 0, 0, profileImage.width, profileImage.height);
+
+    var imgAsDataURL = profileCanvas.toDataURL('img/png');
+
+    try {
+        localStorage.setItem('profileImage', imgAsDataURL);
+    }
+    catch (e) {
+        console.log('Storage failed: ' + e);
+    }
+}, false);
+
