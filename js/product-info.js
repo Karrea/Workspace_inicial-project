@@ -135,7 +135,7 @@ function puntuar() {
     var newComment = {
         "score": addEstrellas(),
         "description": inputValue,
-        "user": localStorage.getItem('mail'),
+        "user": localStorage.getItem('userName'),
         "dateTime": "hace unos segundos"
         }
     comments.push(newComment);
