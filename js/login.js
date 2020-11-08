@@ -19,8 +19,8 @@ function toHome() {
         location.href = "home.html";
 
         // Guardando el mail en el localstorage
-        const userEmail = document.getElementById("user").value;
-        localStorage.setItem('mail', userEmail);
+        const userName = document.getElementById("user").value;
+        localStorage.setItem('userName', userName);
 
         // Guardando la pass en el localstorage
         const userPassword = document.getElementById("pass").value;

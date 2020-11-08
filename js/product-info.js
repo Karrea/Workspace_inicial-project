@@ -51,7 +51,7 @@ function showComments (array) {
     <div> 
         <h3> Comentar </h3>
         <br> <b> 
-        Usuario: </b> <input type='text' readonly disabled value='${localStorage.getItem('mail')}'> 
+        Usuario: </b> <input type='text' readonly disabled value='${localStorage.getItem('userName')}'> 
         <br> <br> 
         
         <b> Comentar: </b> 
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
-            showRelatedProducts(product.relatedProducts);
+            // showRelatedProducts(product.relatedProducts);
         }
     } );
 

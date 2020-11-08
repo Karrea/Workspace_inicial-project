@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Perfil </title>
+
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    
+    <link href='css/perfil.css' rel='stylesheet'>
+
+    
+    
+</head>
+<body>
+
+    <nav class="site-header sticky-top py-1 bg-dark">
+        <div id='navigatorBar' class="container d-flex flex-column flex-md-row justify-content-between">
+    
+        </div>
+      </nav>
+
+    <div class="wrapper bg-white mt-sm-5">
+        <h4 class="pb-4 border-bottom"> Configuraciones de la cuenta</h4>
+        <div class="d-flex align-items-start py-3 border-bottom"> <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img" alt="">
+            <div class="pl-sm-4 pl-2" id="img-section"> <b>Foro de perfil</b>
+                <p>Tipo de archivo aceptado .png. Menos de 1 MB</p> <button class="btn button border"><b>Subir</b></button>
+            </div>
+        </div>
+        <div class="py-2">
+            <div id='datosPerfil'> 
+                
+            </div>
+            <div class="py-3 pb-4 border-bottom"> <button class="btn btn-primary mr-3" onclick="saveDatos()"> Guardar cambios</button> </div>
+            <div class="d-sm-flex align-items-center pt-3" id="deactivate">
+                <div> <b> Recibir notificaciones en el mail indicado </b>
+                    <p> Recibiras ofertas y nuevos articulos a la venta </p>
+                </div>
+                <div class="ml-auto"> <button class="btn danger"> Activar </button> </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+
+    <script src='js/my-profile.js'></script> 
+    <script src="js/init.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

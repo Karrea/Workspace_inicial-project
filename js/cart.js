@@ -604,9 +604,9 @@ function saveCreditCardData() {
     let securityCode = document.getElementById('code').value;
     let vencimiento = document.getElementById('vence').value;
 
-    localStorage.setItem('storageNroTarjeta', nroTarjeta);
-    localStorage.setItem('storageSecurityCode', securityCode);
-    localStorage.setItem('storageVencimiento', vencimiento);
+    sessionStorage.setItem('storageNroTarjeta', nroTarjeta);
+    sessionStorage.setItem('storageSecurityCode', securityCode);
+    sessionStorage.setItem('storageVencimiento', vencimiento);
 
     toAppend = `
               <tr> 
@@ -625,8 +625,8 @@ function saveCreditCardData() {
     let nroCuenta = document.getElementById('numero-cuenta').value;
     let titularCuenta = document.getElementById('titular-cuenta').value;
 
-    localStorage.setItem('storageNroCuenta', nroCuenta);
-    localStorage.setItem('storageTitularCuenta', titularCuenta);
+    sessionStorage.setItem('storageNroCuenta', nroCuenta);
+    sessionStorage.setItem('storageTitularCuenta', titularCuenta);
 
     toAppend = `
     <tr> 

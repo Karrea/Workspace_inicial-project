@@ -57,11 +57,11 @@ function showName() {
 
     <div class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="perfilButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        ${localStorage.getItem("mail")} 
+        ${localStorage.getItem("userName")} 
       </a>
       <div class="dropdown-menu" aria-labelledby="perfilButton">
         <a class="dropdown-item" href="cart.html"> Mi carrito </a>
-        <a class="dropdown-item" href="#"> Mi perfil </a>
+        <a class="dropdown-item" href="miperfil.html"> Mi perfil </a>
         <div class='dropdown-divider'></div> 
         <a class="dropdown-item" onClick='deleteSession()'> Salir </a>
       </div>
